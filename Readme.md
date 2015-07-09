@@ -2,7 +2,7 @@
 
 Create an inode at master 301
 ```bash
-sudo mknod -m 777 /dev/simple_char_device 777 c 301 0
+sudo mknod -m 777 /dev/simple_char_device  c 301 0
 ```
 
 View the inode successfully created:
