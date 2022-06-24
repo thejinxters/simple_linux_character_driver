@@ -1,23 +1,3 @@
-# Build WSL kernel first
-clone WSL linux kernel to `$HOME/WSL2-Linux-Kernel`
-
-checkout the git tag that matches $(uname -r) in your WSL
-
-Save current kernel configuration to tmp file
-
-```
-zcat /proc/config/.gz > /tmp/kernel-config
-```
-
-build the kernel image
-```
-make KCONFIG_CONFIG=/tmp/kernel-config -j `nproc`
-```
-
-Now, you have built linux kernel image, bzImage.
-
-
-
 # Install the driver
 In this repo folder run:
 ```bash
@@ -51,3 +31,21 @@ View the inode successfully created:
 ```bash
 ls -la /dev | grep simple_char_device
 ```
+
+# Build WSL kernel
+clone WSL linux kernel to `$HOME/WSL2-Linux-Kernel`
+
+checkout the git tag that matches $(uname -r) in your WSL
+
+Save current kernel configuration to tmp file
+
+```
+zcat /proc/config/.gz > /tmp/kernel-config
+```
+
+build the kernel image
+```
+make KCONFIG_CONFIG=/tmp/kernel-config -j `nproc`
+```
+
+Now, you have built linux kernel image, bzImage.
