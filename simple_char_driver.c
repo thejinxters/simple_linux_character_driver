@@ -30,7 +30,7 @@ ssize_t simple_char_driver_read (struct file *pfile, char __user *buffer, size_t
 	}
 	
 	// Get bytes read by subtracting return of copy_to_user (returns unread bytes)
-	bytesRead = bytesToRead - copy_to_user(buffer, device_buffer + *offset, bytesToRead);
+	bytesRead = bytesToRead - raw_copy_to_user(buffer, device_buffer + *offset, bytesToRead);
 	printk(KERN_ALERT "READING with Simple Character Driver. Reading %d bytes\n", bytesRead);
 
 	// Set offset so that we can eventually reach the end of the file
@@ -64,7 +64,7 @@ ssize_t simple_char_driver_write (struct file *pfile, const char __user *buffer,
 	}
 
 	//Get bites written by subtracting unwritten bites from retun of copy_from_user
-	bytesWritten = bytesToWrite - copy_from_user(device_buffer + *offset + placeholder, buffer, bytesToWrite);
+	bytesWritten = bytesToWrite - raw_copy_from_user(device_buffer + *offset + placeholder, buffer, bytesToWrite);
 	
 	// If no space left:
 	if(bytesWritten == 0){

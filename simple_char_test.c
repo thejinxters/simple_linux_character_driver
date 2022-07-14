@@ -13,18 +13,19 @@
 
 #define BUFFER_SIZE 1024
 
-openDevice(){
+void getInput();
+void openDevice(){
 	open("/dev/simple_char_device", O_RDWR | O_APPEND);
 	getInput();
 }
 
-readDevice(){
+void readDevice(){
 	printf("\nData read from the device:\n");
-	system("cat /dev/simple_char_device");
+	(void)system("cat /dev/simple_char_device");
 	getInput();
 }
 
-writeDevice(){
+void writeDevice(){
 	printf("\nEnter data you want to write to the device:\n");
 	char buffer[BUFFER_SIZE];
 	char data[BUFFER_SIZE];
@@ -40,7 +41,7 @@ writeDevice(){
 	getInput();	
 }
 
-getInput(){
+void getInput(){
 
 	char inputBuffer[BUFFER_SIZE];
 
@@ -64,6 +65,6 @@ getInput(){
 	}
 }
 
-main(){
+void main(){
 	getInput();
 }
